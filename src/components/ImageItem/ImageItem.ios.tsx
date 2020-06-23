@@ -26,6 +26,7 @@ import useImageDimensions from "../../hooks/useImageDimensions";
 import { getImageStyles, getImageTransform } from "../../utils";
 import { ImageSource } from "../../@types";
 import { ImageLoading } from "./ImageLoading";
+import FastImage from "react-native-fast-image";
 
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.55;
@@ -42,6 +43,8 @@ type Props = {
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
 };
+
+const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
 
 const ImageItem = ({
   imageSrc,
@@ -137,7 +140,7 @@ const ImageItem = ({
           onLongPress={onLongPressHandler}
           delayLongPress={delayLongPress}
         >
-          <Animated.Image
+          <AnimatedFastImage
             source={imageSrc}
             style={imageStylesWithOpacity}
             onLoad={() => setLoaded(true)}

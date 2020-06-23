@@ -22,6 +22,7 @@ import usePanResponder from "../../hooks/usePanResponder";
 import { getImageStyles, getImageTransform } from "../../utils";
 import { ImageSource } from "../../@types";
 import { ImageLoading } from "./ImageLoading";
+import FastImage from "react-native-fast-image";
 
 const SWIPE_CLOSE_OFFSET = 75;
 const SWIPE_CLOSE_VELOCITY = 1.75;
@@ -38,6 +39,9 @@ type Props = {
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
 };
+
+
+const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
 
 const ImageItem = ({
   imageSrc,
@@ -127,7 +131,7 @@ const ImageItem = ({
         onScrollEndDrag,
       })}
     >
-      <Animated.Image
+      <AnimatedFastImage
         {...panHandlers}
         source={imageSrc}
         style={imageStylesWithOpacity}
